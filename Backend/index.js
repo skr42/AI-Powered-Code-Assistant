@@ -1,11 +1,11 @@
 import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-// import cookieParser from "cookie-parser";
+import cookieParser from "cookie-parser";
 // import cors from "cors";
 
-import userRoutes from "./routes/user.route.js";
-// import promtRoutes from "./routes/promt.route.js";
+import userRoutes from "./routes/user.routes.js";
+import promtRoutes from "./routes/prompt.route.js";
 
 dotenv.config();
 
@@ -15,7 +15,7 @@ const MONGO_URL = process.env.MONGO_URI;
 
 // middleware
 app.use(express.json());
-// app.use(cookieParser());
+app.use(cookieParser());
 
 // app.use(
 //   cors({
@@ -34,7 +34,7 @@ mongoose
 
 // // routes
 app.use("/api/v1/user", userRoutes);
-// app.use("/api/v1/deepseekai", promtRoutes);
+app.use("/api/v1/deepseekai", promtRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
